@@ -20,7 +20,7 @@ class HomeService {
     }
   }
 
-  Future<List<MovieModel>> getMovies(
+  Future<Map<String, dynamic>> getMovies(
       int page, List<GenreModel> listGenres) async {
     try {
       final response = await dio.get(
@@ -34,7 +34,7 @@ class HomeService {
         ),
       );
 
-      return listMovies;
+      return {"list_movies": listMovies, "last_page": response.data['total_pages']};
     } catch (e) {
       throw e;
     }

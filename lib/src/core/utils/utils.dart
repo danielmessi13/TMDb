@@ -11,12 +11,13 @@ MovieModel setGenres(movie, List<GenreModel> listGenres) {
   var currentMovie = MovieModel.fromJson(movie);
 
   for (var i = 0; i < currentMovie.genreIds.length; i++) {
-    var genre = listGenres.firstWhere(
-      (genre) => genre.id == currentMovie.genreIds[i],
+    var genre = listGenres?.firstWhere(
+      (genre) => genre?.id == currentMovie?.genreIds[i],
     );
 
-    currentMovie.genres +=
-        genre.name + "${currentMovie.genreIds.length - 1 != i ? ', ' : ''}";
+    currentMovie.genres += genre?.name != null
+        ? genre.name + "${currentMovie.genreIds.length - 1 != i ? ', ' : ''}"
+        : "";
   }
   return currentMovie;
 }

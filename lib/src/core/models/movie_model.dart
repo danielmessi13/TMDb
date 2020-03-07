@@ -29,10 +29,11 @@ class MovieModel {
       this.title,
       this.voteAverage,
       this.overview,
+      this.genres,
       this.releaseDate});
 
   MovieModel.fromJson(Map<String, dynamic> json) {
-    popularity = json['popularity'];
+    popularity = double.tryParse(json['popularity'].toString());
     voteCount = json['vote_count'];
     video = json['video'];
     posterPath = json['poster_path'];

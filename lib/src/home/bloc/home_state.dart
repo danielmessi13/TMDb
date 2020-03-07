@@ -5,10 +5,8 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class HomeSuccess extends HomeState {
-  final List<MovieModel> listMovies;
+class HomeSuccess extends HomeState {}
 
-  HomeSuccess({@required this.listMovies});
-}
+class HomeLoading extends HomeState {}
 
 class HomeFailure extends HomeState {}

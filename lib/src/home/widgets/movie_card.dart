@@ -14,6 +14,7 @@ class MovieCard extends StatelessWidget {
     final fontSize = MediaQuery.of(context).size.width * 0.050;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      height: MediaQuery.of(context).size.height * 0.24,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -40,35 +41,51 @@ class MovieCard extends StatelessWidget {
           SizedBox(width: 20),
           Expanded(
             flex: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  movie?.originalTitle ?? "",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: fontSize,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    movie?.originalTitle ?? "",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: fontSize,
+                      color: Color(0xFF04774D),
+                    ),
+                  ),
+                  Divider(
+                    thickness: 2,
                     color: Color(0xFF04774D),
                   ),
-                ),
-                Divider(
-                  thickness: 2,
-                  color: Color(0xFF04774D),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  movie?.genres ?? "",
-                  style: TextStyle(
-                    fontSize: fontSize * 0.8,
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      movie?.genres ?? "",
+                      style: TextStyle(
+                        fontSize: fontSize * 0.8,
+                      ),
+                    ),
                   ),
-                ),
-                Text(
-                  movie?.releaseDate ?? "",
-                  style: TextStyle(
-                    fontSize: fontSize * 0.8,
+                  Spacer(),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.calendar_today,
+                        color: Colors.white,
+                        size: fontSize,
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        movie?.releaseDate ?? "",
+                        style: TextStyle(
+                          fontSize: fontSize * 0.8,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           )
         ],
