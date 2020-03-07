@@ -8,9 +8,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'TMDb Movies',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color(0xFF04774D),
+        accentColor: Color(0xFF081C24),
+        canvasColor: Color(0xFF081C24),
+        textTheme: TextTheme(
+          body1: TextStyle(),
+        ).apply(
+          bodyColor: Colors.white,
+        ),
       ),
       home: HomePage(),
     );
