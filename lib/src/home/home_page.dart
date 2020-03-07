@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmdb_app/src/core/widgets/error_widget.dart';
 import 'package:tmdb_app/src/home/bloc/home_bloc.dart';
-import 'package:tmdb_app/src/movie/movie_page.dart';
 
 import 'widgets/movie_card.dart';
+import 'widgets/text_field_custom.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -54,23 +54,32 @@ class _HomePageState extends State<HomePage> {
               child: CircularProgressIndicator(),
             );
           } else if (state is HomeSuccess || state is HomeLoading) {
-            return ListView.builder(
-              controller: _scrollController,
-              shrinkWrap: true,
-              padding: EdgeInsets.only(left: 5, right: 5, top: 10),
-              itemCount: _homeBloc.listMovies.length,
-              itemBuilder: (_, index) => Column(
-                children: <Widget>[
-                  MovieCard(movie: _homeBloc.listMovies[index]),
-                  state is HomeLoading &&
-                          _homeBloc.listMovies.length - 1 == index
-                      ? Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Center(child: CircularProgressIndicator()),
-                        )
-                      : Container(),
-                ],
-              ),
+            return Column(
+              children: <Widget>[
+                TextFieldCustom(),
+                Expanded(
+                  child: ListView.builder(
+                    controller: _scrollController,
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    itemCount: _homeBloc.listMovies.length,
+                    itemBuilder: (_, index) => Column(
+                      children: <Widget>[
+                        MovieCard(movie: _homeBloc.listMovies[index]),
+                        state is HomeLoading &&
+                                _homeBloc.listMovies.length - 1 == index
+                            ? Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20),
+                                child:
+                                    Center(child: CircularProgressIndicator()),
+                              )
+                            : Container(),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             );
           } else if (state is HomeFailure) {
             return Stack(

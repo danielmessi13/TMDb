@@ -19,6 +19,7 @@ class MovieCard extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
             Navigator.push(
               context,
               MaterialPageRoute(
