@@ -1,6 +1,7 @@
 import 'package:tmdb_app/src/core/api/api_info.dart';
 import 'package:tmdb_app/src/core/models/genre_model.dart';
 import 'package:tmdb_app/src/core/models/movie_model.dart';
+import 'package:tmdb_app/src/core/utils/utils.dart';
 
 class HomeService {
   Future<List<GenreModel>> getGenres() async {
@@ -29,20 +30,7 @@ class HomeService {
 
       List<MovieModel> listMovies = List<MovieModel>.from(
         response.data['results'].map(
-          (movie) {
-            var currentMovie = MovieModel.fromJson(movie);
-
-            for (var i = 0; i < currentMovie.genreIds.length; i++) {
-              var genre = listGenres.firstWhere(
-                (genre) => genre.id == currentMovie.genreIds[i],
-              );
-              
-              currentMovie.genres += genre.name +
-                  "${currentMovie.genreIds.length - 1 != i ? ', ' : ''}";
-            }
-
-            return currentMovie;
-          },
+          (movie) => getMovieWithComputedData(movie, listGenres),
         ),
       );
 
