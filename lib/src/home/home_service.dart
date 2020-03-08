@@ -4,6 +4,32 @@ import 'package:tmdb_app/src/core/models/movie_model.dart';
 import 'package:tmdb_app/src/core/utils/utils.dart';
 
 class HomeService {
+  Future<Map<String, dynamic>> searchMovie(
+      int nextPage, String query, List<GenreModel> listGenres) async {
+    try {
+      final response = await dio.get(
+        "search/movie",
+        queryParameters: {
+          "query": query,
+          "page": nextPage,
+        },
+      );
+
+      List<MovieModel> listMovies = List<MovieModel>.from(
+        response.data['results'].map(
+          (movie) => getMovieWithComputedData(movie, listGenres),
+        ),
+      );
+
+      return {
+        "list_movies": listMovies,
+        "last_page": response.data['total_pages']
+      };
+    } catch (e) {
+      throw e;
+    }
+  }
+
   Future<List<GenreModel>> getGenres() async {
     try {
       final response = await dio.get("genre/movie/list");
@@ -34,7 +60,10 @@ class HomeService {
         ),
       );
 
-      return {"list_movies": listMovies, "last_page": response.data['total_pages']};
+      return {
+        "list_movies": listMovies,
+        "last_page": response.data['total_pages']
+      };
     } catch (e) {
       throw e;
     }
