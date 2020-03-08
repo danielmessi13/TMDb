@@ -1,6 +1,6 @@
 # TMDb app
 
-- If you have an Android and want to test without having to download Flutter, the apk was placed in the project folder
+- If you have an Android and want to test without having to download Flutter, the [apk](https://github.com/danielmessi13/TMDb/blob/development/tmdb_release.apk) was placed in the project folder
 
 ## Getting Started
 
