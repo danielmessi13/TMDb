@@ -1,16 +1,32 @@
-# tmdb_app
+# TMDb app
 
-A new Flutter project.
+- If you have an Android and want to test without having to download Flutter, the [apk](https://github.com/danielmessi13/TMDb/blob/development/tmdb_release.apk) was placed in the project folder
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project is a Flutter application, to build it you need [install flutter](https://flutter.dev/docs/get-started/install).
 
-A few resources to get you started if this is your first Flutter project:
+- Don't forget to put the flutter in the environment variables
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## How to debug
+
+Connect a cell phone to your computer or start an emulator and enter the command line below.
+
+```
+flutter run
+```
+
+If you want to generate the apk yourself, use:
+```
+flutter build apk
+```
+## Screenshots
+
+![Screenshots](https://github.com/danielmessi13/TMDb/blob/development/screenshots/Prints.jpg)
+
+## Third-party libraries used
+
+- **flutter_bloc:** It was used to organize / optimize the work with the states of the application, acting as an intermediary between the data source and my screens.
+
+- **dio:** With it I can set my base options, adding my base url and my API key that will be used for every request in my application, making any API call easier.
