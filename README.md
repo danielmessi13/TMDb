@@ -23,7 +23,7 @@ flutter build apk
 ```
 ## Screenshots
 
-![Screenshots]([https://github.com/danielmessi13/TMDb/blob/development/screenshots/Prints.jpg)
+![Screenshots](https://github.com/danielmessi13/TMDb/blob/development/screenshots/Prints.jpg)
 
 ## Third-party libraries used
 
