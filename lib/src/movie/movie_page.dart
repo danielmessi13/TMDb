@@ -23,6 +23,7 @@ class MoviePage extends StatelessWidget {
             flexibleSpace: FlexibleSpaceBar(
               background: ShaderMask(
                 child: CachedNetworkImage(
+                  fit: BoxFit.cover,
                   imageUrl:
                       "https://image.tmdb.org/t/p/w780/${movie.backdropPath}",
                   placeholder: (context, url) =>
@@ -41,42 +42,47 @@ class MoviePage extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                SizedBox(height: 10),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      child: Hero(
-                        tag: movie.id,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xFF04774D),
-                                blurRadius: 8,
-                                spreadRadius: 1,
+                SizedBox(height: 15),
+                Container(
+                  height: 250,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        flex: 5,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15),
+                          child: Hero(
+                            tag: movie.id,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0xFF04774D),
+                                    blurRadius: 8,
+                                    spreadRadius: 2,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  "https://image.tmdb.org/t/p/w154/${movie.posterPath}",
-                              placeholder: (context, url) =>
-                                  Center(child: CircularProgressIndicator()),
-                              errorWidget: (context, url, error) =>
-                                  Center(child: Icon(Icons.error)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.fill,
+                                  imageUrl:
+                                      "https://image.tmdb.org/t/p/w342/${movie.posterPath}",
+                                  placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator()),
+                                  errorWidget: (context, url, error) =>
+                                      Center(child: Icon(Icons.error)),
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: 215,
+                      Expanded(
+                        flex: 6,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -100,27 +106,30 @@ class MoviePage extends StatelessWidget {
                               ),
                             ),
                             Spacer(),
-                            Row(
-                              children: <Widget>[
-                                Icon(
-                                  Icons.calendar_today,
-                                  color: Colors.white,
-                                  size: fontSize,
-                                ),
-                                SizedBox(width: 10),
-                                Text(
-                                  movie?.releaseDate ?? "",
-                                  style: TextStyle(
-                                    fontSize: fontSize * 0.8,
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8.0),
+                              child: Row(
+                                children: <Widget>[
+                                  Icon(
+                                    Icons.calendar_today,
+                                    color: Colors.white,
+                                    size: fontSize,
                                   ),
-                                ),
-                              ],
+                                  SizedBox(width: 10),
+                                  Text(
+                                    movie?.releaseDate ?? "",
+                                    style: TextStyle(
+                                      fontSize: fontSize * 0.8,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 OverviewMovie(overview: movie?.overview ?? ""),
               ],

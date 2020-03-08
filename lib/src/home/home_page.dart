@@ -60,9 +60,11 @@ class _HomePageState extends State<HomePage> {
               builder: (_, state) {
                 if (state is HomeInitial) {
                   return Container(
-                    height: MediaQuery.of(context).size.height * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     alignment: Alignment.center,
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.white),
+                    ),
                   );
                 } else if ((state is HomeSuccess || state is HomeLoading) &&
                     _homeBloc.listSearchMovies.isEmpty) {

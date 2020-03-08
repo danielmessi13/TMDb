@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'TMDb Movies',
       theme: ThemeData(
         primaryColor: Color(0xFF04774D),
-        accentColor: Color(0xFF04774D),
+        accentColor: Color(0xFF081C24),
         canvasColor: Color(0xFF081C24),
         textTheme: TextTheme(
           body1: TextStyle(),
