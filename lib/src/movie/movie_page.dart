@@ -44,7 +44,7 @@ class MoviePage extends StatelessWidget {
               [
                 SizedBox(height: 15),
                 Container(
-                  height: 250,
+                  height: 240,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -55,6 +55,7 @@ class MoviePage extends StatelessWidget {
                           child: Hero(
                             tag: movie.id,
                             child: Container(
+                              height: double.infinity,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 boxShadow: [
@@ -68,7 +69,7 @@ class MoviePage extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20),
                                 child: CachedNetworkImage(
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                   imageUrl:
                                       "https://image.tmdb.org/t/p/w342/${movie.posterPath}",
                                   placeholder: (context, url) => Center(

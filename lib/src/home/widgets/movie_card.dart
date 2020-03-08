@@ -32,12 +32,14 @@ class MovieCard extends StatelessWidget {
           },
           child: Container(
             margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            height: 200,
+            height: 220,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Expanded(
+                  flex: 2,
                   child: Container(
+                    height: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       boxShadow: [
@@ -50,15 +52,21 @@ class MovieCard extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(
-                        "https://image.tmdb.org/t/p/w154/${movie.posterPath}",
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl:
+                            "https://image.tmdb.org/t/p/w342/${movie.posterPath}",
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) =>
+                            Center(child: Icon(Icons.error)),
                       ),
                     ),
                   ),
                 ),
                 SizedBox(width: 20),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: Column(
