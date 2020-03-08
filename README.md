@@ -30,5 +30,3 @@ flutter build apk
 - **flutter_bloc:** It was used to organize / optimize the work with the states of the application, acting as an intermediary between the data source and my screens.
 
 - **dio:** With it I can set my base options, adding my base url and my API key that will be used for every request in my application, making any API call easier.
-
--**cached_network_image:** Used to load movie images, in addition to not having to make a request every time you load the movie. It gives you an option to define a component while the image loads and if the image fails to load
