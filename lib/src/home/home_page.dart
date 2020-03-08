@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tmdb_app/src/core/widgets/error_widget.dart';
+import 'package:tmdb_app/src/core/widgets/failure_widget.dart';
 import 'package:tmdb_app/src/home/bloc/home_bloc.dart';
 
 import 'widgets/movie_card.dart';
@@ -59,7 +59,9 @@ class _HomePageState extends State<HomePage> {
               bloc: _homeBloc,
               builder: (_, state) {
                 if (state is HomeInitial) {
-                  return Center(
+                  return Container(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    alignment: Alignment.center,
                     child: CircularProgressIndicator(),
                   );
                 } else if ((state is HomeSuccess || state is HomeLoading) &&
@@ -87,24 +89,12 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 } else if (state is HomeFailure) {
-                  return Stack(
-                    children: <Widget>[
-                      FailureWidget(
-                        message:
-                            "Unable to list movies, click the icon below to try again",
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        alignment: Alignment.center,
-                        child: IconButton(
-                          iconSize: MediaQuery.of(context).size.width * 0.1,
-                          icon: Icon(Icons.replay),
-                          onPressed: () {
-                            _homeBloc.add(HomeStart());
-                          },
-                        ),
-                      ),
-                    ],
+                  return FailureWidget(
+                    message:
+                        "Unable to list movies, click the here to try again",
+                    onTap: () {
+                      _homeBloc.add(HomeStart());
+                    },
                   );
                 } else if ((state is HomeSearchSuccess ||
                         state is HomeLoading) &&

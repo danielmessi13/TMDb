@@ -49,13 +49,14 @@ class MovieCard extends StatelessWidget {
                       ],
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
                         imageUrl:
                             "https://image.tmdb.org/t/p/w154/${movie.posterPath}",
                         placeholder: (context, url) =>
                             Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
+                        errorWidget: (context, url, error) =>
+                            Center(child: Icon(Icons.error)),
                       ),
                     ),
                   ),
@@ -70,6 +71,7 @@ class MovieCard extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           movie?.originalTitle ?? "",
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: fontSize,
