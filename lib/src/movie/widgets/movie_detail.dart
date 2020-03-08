@@ -1,5 +1,3 @@
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_app/src/core/models/movie_model.dart';
 
@@ -40,14 +38,9 @@ class MovieDetail extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: CachedNetworkImage(
+                    child: Image.network(
+                      "https://image.tmdb.org/t/p/w342/${movie.posterPath}",
                       fit: BoxFit.cover,
-                      imageUrl:
-                          "https://image.tmdb.org/t/p/w342/${movie.posterPath}",
-                      placeholder: (context, url) =>
-                          Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) =>
-                          Center(child: Icon(Icons.error)),
                     ),
                   ),
                 ),

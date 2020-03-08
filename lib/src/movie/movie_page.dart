@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_app/src/core/models/movie_model.dart';
 
@@ -23,13 +22,9 @@ class MoviePage extends StatelessWidget {
             expandedHeight: 200.0,
             flexibleSpace: FlexibleSpaceBar(
               background: ShaderMask(
-                child: CachedNetworkImage(
+                child: Image.network(
+                  "https://image.tmdb.org/t/p/w780/${movie.backdropPath}",
                   fit: BoxFit.cover,
-                  imageUrl:
-                      "https://image.tmdb.org/t/p/w780/${movie.backdropPath}",
-                  placeholder: (context, url) =>
-                      Center(child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
                 shaderCallback: (Rect bounds) {
                   return LinearGradient(colors: [
