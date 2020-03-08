@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:tmdb_app/src/core/models/movie_model.dart';
 import 'package:tmdb_app/src/movie/movie_page.dart';
@@ -49,8 +50,12 @@ class MovieCard extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        "https://image.tmdb.org/t/p/w154/${movie.posterPath}",
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "https://image.tmdb.org/t/p/w154/${movie.posterPath}",
+                        placeholder: (context, url) =>
+                            Center(child: CircularProgressIndicator()),
+                        errorWidget: (context, url, error) => Center(child: Icon(Icons.error)),
                       ),
                     ),
                   ),
