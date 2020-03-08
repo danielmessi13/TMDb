@@ -66,7 +66,7 @@ class MoviePage extends StatelessWidget {
                               imageUrl:
                                   "https://image.tmdb.org/t/p/w154/${movie.posterPath}",
                               placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
+                                  Center(child: CircularProgressIndicator()),
                               errorWidget: (context, url, error) =>
                                   Center(child: Icon(Icons.error)),
                             ),
