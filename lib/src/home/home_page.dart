@@ -83,7 +83,11 @@ class _HomePageState extends State<HomePage> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 20),
                                   child: Center(
-                                      child: CircularProgressIndicator()),
+                                    child: CircularProgressIndicator(
+                                      valueColor:
+                                          AlwaysStoppedAnimation(Colors.white),
+                                    ),
+                                  ),
                                 )
                               : Container(),
                         ],
